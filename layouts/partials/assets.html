@@ -195,7 +195,7 @@
   {{- dict "Source" $cryptoEncBase64JS "Minify" true "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/script.html" -}}
   {{- dict "Source" $cryptoMd5JS "Minify" true "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/script.html" -}}
   {{- dict "Source" $cryptoSha256JS "Minify" true "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/script.html" -}}
-  {{- dict "Source" "js/fixit-decryptor.js" "Minify" hugo.IsProduction "Fingerprint" $fingerprint "Defer" true | dict "Scratch" .Scratch "Data" | partial "scratch/script.html" -}}
+  {{- dict "Source" "js/fixit-decryptor.js" "Minify" hugo.IsProduction "Fingerprint" $fingerprint "Defer" false | dict "Scratch" .Scratch "Data" | partial "scratch/script.html" -}}
   {{- $config = dict "all" (isset $params "password") "shortcode" ($encryptPartial | default false) | dict "encryption" | merge $config -}}
 {{- end -}}
 
@@ -256,3 +256,12 @@
 {{- end -}}
 
 {{- partial "plugin/analytics.html" . -}}
+
+
+<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+<script>
+  var vConsole = new window.VConsole();
+  setTimeout(()=>{
+    vConsole.show()
+  }, 500)
+</script>
